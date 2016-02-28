@@ -10,3 +10,6 @@
 [submodule "3rd/Penlight"]
 	path = 3rd/Penlight
 	url = https://github.com/stevedonovan/Penlight.git
+[submodule "3rd/json-lua"]
+	path = 3rd/json-lua
+	url = https://github.com/jiyinyiyong/json-lua.git
