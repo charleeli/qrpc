@@ -1,0 +1,16 @@
+.Base {
+    uid 0 : integer
+    name 1 : string
+    gender 2 : integer
+}
+
+.Sign {
+    signed_today 0 : boolean
+    signed_count 1 : integer
+}
+
+.Role {
+    uid 0 :     integer
+    base 1 :    Base
+    sign 2 :    Sign
+}

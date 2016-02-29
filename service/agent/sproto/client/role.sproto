@@ -1,6 +1,6 @@
-send_private_chat 1  {
+set_role 1  {
     request {
-        uuid 0 : string
+        uid 0 : string
         msg 1 : string
     }
     response {
@@ -8,12 +8,12 @@ send_private_chat 1  {
     }
 }
 
-recv_private_chat 2  {
+get_role 2  {
     request {
-        uuid 0 : string
+        uid 0 : string
         msg 1 : string
     }
     response {
-        chat 0 : Chat
+        role 0 : Role
     }
 }

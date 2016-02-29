@@ -1,0 +1,5 @@
+Base {
+    uid number          #账号
+    name string         #姓名
+    gender number       #性别
+}

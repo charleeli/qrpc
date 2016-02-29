@@ -83,13 +83,13 @@ schema:
 	cd $(TOP) && cp $(TOP)/3rd/skynet/luaclib/lpeg.so $(TOP)/3rd/sprotodump/
 
 	cd $(TOP)/3rd/sprotodump/ && $(BUILD_BIN_DIR)/lua sprotodump.lua \
-	-spb `find -L $(TOP)/service/sproto/client  -name "*.sproto"`   \
-	`find -L $(TOP)/service/sproto/common  -name "*.sproto"`    \
+	-spb `find -L $(TOP)/service/agent/sproto/client  -name "*.sproto"`   \
+	`find -L $(TOP)/service/agent/sproto/common  -name "*.sproto"`    \
 	-o $(BUILD_SPROTO_DIR)/c2s.spb
 
 	cd $(TOP)/3rd/sprotodump/ && $(BUILD_BIN_DIR)/lua sprotodump.lua \
-	-spb `find -L $(TOP)/service/sproto/server  -name "*.sproto"`   \
-	`find -L $(TOP)/service/sproto/common  -name "*.sproto"`    \
+	-spb `find -L $(TOP)/service/agent/sproto/server  -name "*.sproto"`   \
+	`find -L $(TOP)/service/agent/sproto/common  -name "*.sproto"`    \
 	-o $(BUILD_SPROTO_DIR)/s2c.spb
 
 clean :

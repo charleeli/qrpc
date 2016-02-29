@@ -1,0 +1,16 @@
+# a boolean     默认值false
+# a number      默认值0
+# a string      默认值''
+
+# a [item_type] 默认值{}  list
+# a <key_type, value_type>  map
+
+# struct:
+# a {
+#     a type
+#     b type
+# }
+
+include base.orm
+include sign.orm
+include role.orm

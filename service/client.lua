@@ -95,8 +95,8 @@ local function dispatch_package()
 	end
 end
 
-send_request("send_private_chat", {uuid=123,msg="hello"})
-send_request("recv_private_chat", {uuid=123,msg="hello"})
+send_request("set_role", {uid=123,msg="hello"})
+send_request("get_role", {uid=123,msg="hello"})
 
 while true do
 	dispatch_package()
