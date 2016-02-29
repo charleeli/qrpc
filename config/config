@@ -1,4 +1,3 @@
-skynetroot = "./3rd/skynet/"
 root = "./"
 thread = 8
 logger = nil
@@ -10,7 +9,14 @@ start = "main"	-- main script
 bootstrap = "snlua bootstrap"	-- The service for bootstrap
 standalone = "0.0.0.0:2013"
 
---
+skynetroot = "./3rd/skynet/"
+debug_port = 8000
+sproto_path = './build/sproto'
+rpc_path = './service/agent/rpc'
+log_dirname = "log"
+log_basename = "test"
+
+-- 自定义服务
 myservice = "./service/?.lua;" ..
         "./service/?/main.lua;"..
         "./service/agent/?.lua"
@@ -18,6 +24,9 @@ myservice = "./service/?.lua;" ..
 -- LUA服务所在位置
 luaservice = skynetroot .. "service/?.lua;" .. myservice
 snax = myservice
+
+-- run preload.lua before every lua service run
+preload = "./lualib/preload/preload.lua"
 
 -- 用于加载LUA服务的LUA代码
 lualoader = skynetroot .. "lualib/loader.lua"
@@ -29,15 +38,16 @@ snax = root.."3rd/skynet/examples/?.lua;"..root.."3rd/skynet/test/?.lua"
 -- C编写的服务模块路径
 cpath = skynetroot .. "cservice/?.so;".."./build/cservice/?.so"
 
--- 将添加到 package.path 中的路径，供 require 调用。
+-- 将添加到 package.path 中的路径，供 require 调用
 lua_path = skynetroot .. "lualib/?.lua;" ..
+           "./build/lualib/?.lua;" ..
 		   "./lualib/?.lua;" ..
 		   "./lualib/preload/?.lua;" ..
 		   "./lualib/entity/?.lua;"..
 		   "./service/agent/?.lua;"..
 		   "./service/?.lua"
 
--- 将添加到 package.cpath 中的路径，供 require 调用。
+-- 将添加到 package.cpath 中的路径，供 require 调用
 lua_cpath = skynetroot .. "luaclib/?.so;" .. "./build/luaclib/?.so"
 
 -- 后台模式

@@ -5,12 +5,15 @@ if _VERSION ~= "Lua 5.3" then
 	error "Use lua 5.3"
 end
 
-local socket = require "clientsocket"
-local proto = require "proto"
-local sproto = require "sproto"
+local SprotoLoader = require "sprotoloader"
+local SprotoEnv = require "sproto_env"
+SprotoEnv.init('./build/sproto')
 
-local host = sproto.new(proto.s2c):host "package"
-local request = host:attach(sproto.new(proto.c2s))
+local s2c_sp = SprotoLoader.load(SprotoEnv.PID_S2C)
+local s2c_host = s2c_sp:host(SprotoEnv.BASE_PACKAGE)
+local c2s_request = s2c_host:attach(SprotoLoader.load(SprotoEnv.PID_C2S))
+
+local socket = require "clientsocket"
 
 local fd = assert(socket.connect("127.0.0.1", 8888))
 
@@ -52,7 +55,7 @@ local session = 0
 
 local function send_request(name, args)
 	session = session + 1
-	local str = request(name, args, session)
+	local str = c2s_request(name, args, session)
 	send_package(fd, str)
 	print("Request:", session)
 end
@@ -94,12 +97,12 @@ local function dispatch_package()
 			break
 		end
 
-		print_package(host:dispatch(v))
+		print_package(s2c_host:dispatch(v))
 	end
 end
 
-send_request("handshake")
-send_request("set", { what = "hello", value = "world" })
+send_request("send_private_chat", {uuid=123,msg="hello"})
+
 while true do
 	dispatch_package()
 	local cmd = socket.readstdin()

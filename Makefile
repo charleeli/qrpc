@@ -72,6 +72,21 @@ $(BUILD_LUACLIB_DIR)/log.so : lualib-src/lua-log.c | $(BUILD_LUACLIB_DIR)
 $(BUILD_LUACLIB_DIR)/lfs.so: 3rd/luafilesystem/src/lfs.c | $(BUILD_LUACLIB_DIR) 
 	$(CC) $(CFLAGS) $(SHARED) $^ -o $@
 
+all : schema
+
+schema:
+	cd $(TOP) && cp $(TOP)/3rd/skynet/luaclib/lpeg.so $(TOP)/3rd/sprotodump/
+
+	cd $(TOP)/3rd/sprotodump/ && $(BUILD_BIN_DIR)/lua sprotodump.lua \
+	-spb `find -L $(TOP)/service/sproto/client  -name "*.sproto"`   \
+	`find -L $(TOP)/service/sproto/common  -name "*.sproto"`    \
+	-o $(BUILD_SPROTO_DIR)/c2s.spb
+
+	cd $(TOP)/3rd/sprotodump/ && $(BUILD_BIN_DIR)/lua sprotodump.lua \
+	-spb `find -L $(TOP)/service/sproto/server  -name "*.sproto"`   \
+	`find -L $(TOP)/service/sproto/common  -name "*.sproto"`    \
+	-o $(BUILD_SPROTO_DIR)/s2c.spb
+
 clean :
 	-rm -rf build
 	-rm -rf log
