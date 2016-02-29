@@ -23,7 +23,6 @@ myservice = "./service/?.lua;" ..
 
 -- LUA服务所在位置
 luaservice = skynetroot .. "service/?.lua;" .. myservice
-snax = myservice
 
 -- run preload.lua before every lua service run
 preload = "./lualib/preload/preload.lua"
@@ -32,7 +31,7 @@ preload = "./lualib/preload/preload.lua"
 lualoader = skynetroot .. "lualib/loader.lua"
 
 -- preload = "./examples/preload.lua"	-- run preload.lua before every lua service run
-snax = root.."3rd/skynet/examples/?.lua;"..root.."3rd/skynet/test/?.lua"
+snax = myservice
 -- snax_interface_g = "snax_g"
 
 -- C编写的服务模块路径

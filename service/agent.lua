@@ -5,6 +5,7 @@ local socket = require "socket"
 local sproto = require "sproto"
 local sprotoloader = require "sprotoloader"
 local sproto_env = require "sproto_env"
+local pretty = require 'pl.pretty'
 
 local c2s_sp = sprotoloader.load(sproto_env.PID_C2S)
 local c2s_host = c2s_sp:host(sproto_env.BASE_PACKAGE)

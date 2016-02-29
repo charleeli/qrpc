@@ -1,5 +1,6 @@
 ## Basic requirements
     [ubuntu 14.04 lts](http://www.ubuntu.com/download/desktop)
+    [redis desktop manager](http://redisdesktop.com/)
 
 ## Ubuntu setup
 ```
@@ -16,6 +17,8 @@ make
 ## Test
 ```
 cd qrpc
+./build/bin/redis-server config/redis.conf
+
 ./3rd/skynet/skynet config/config
 ./build/bin/lua service/client.lua
 ```

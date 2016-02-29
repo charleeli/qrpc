@@ -1,9 +1,19 @@
-send_private_chat 100  {
+send_private_chat 1  {
     request {
         uuid 0 : string
         msg 1 : string
     }
     response {
         errcode 0 : integer
+    }
+}
+
+recv_private_chat 2  {
+    request {
+        uuid 0 : string
+        msg 1 : string
+    }
+    response {
+        chat 0 : Chat
     }
 }

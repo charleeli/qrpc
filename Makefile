@@ -16,7 +16,7 @@ CFLAGS = -g -O2 -Wall -I$(BUILD_INCLUDE_DIR)
 LDFLAGS= -L$(BUILD_CLIB_DIR) -Wl,-rpath $(BUILD_CLIB_DIR) -lpthread -lm -ldl -lrt
 DEFS = -DHAS_SOCKLEN_T=1 -DLUA_COMPAT_APIINTCASTS=1 
 
-all : build skynet lua53 Penlight json
+all : build skynet lua53 Penlight json redis
 
 build:
 	-mkdir $(BUILD_DIR)
@@ -44,6 +44,11 @@ Penlight:
 
 json:
 	cp 3rd/json-lua/JSON.lua $(BUILD_LUALIB_DIR)/
+
+redis:
+	cd 3rd/redis/ && make
+	install -p -m 0755 3rd/redis/src/redis-cli $(BUILD_BIN_DIR)/redis-cli
+	install -p -m 0755 3rd/redis/src/redis-server $(BUILD_BIN_DIR)/redis-server
 
 skynet/Makefile :
 	git submodule update --init

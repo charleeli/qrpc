@@ -1,5 +1,7 @@
 package.cpath = "./luaclib/?.so;./3rd/skynet/luaclib/?.so"
-package.path = "./lualib/?.lua;".."./3rd/skynet/lualib/?.lua;./3rd/skynet/examples/?.lua"
+package.path = "./build/lualib/?.lua;./lualib/?.lua;".."./3rd/skynet/lualib/?.lua;./3rd/skynet/examples/?.lua"
+
+local pretty = require 'pl.pretty'
 
 if _VERSION ~= "Lua 5.3" then
 	error "Use lua 5.3"
@@ -64,20 +66,12 @@ local last = ""
 
 local function print_request(name, args)
 	print("REQUEST", name)
-	if args then
-		for k,v in pairs(args) do
-			print(k,v)
-		end
-	end
+	pretty.dump(args)
 end
 
 local function print_response(session, args)
 	print("RESPONSE", session)
-	if args then
-		for k,v in pairs(args) do
-			print(k,v)
-		end
-	end
+	pretty.dump(args)
 end
 
 local function print_package(t, ...)
@@ -102,6 +96,7 @@ local function dispatch_package()
 end
 
 send_request("send_private_chat", {uuid=123,msg="hello"})
+send_request("recv_private_chat", {uuid=123,msg="hello"})
 
 while true do
 	dispatch_package()
