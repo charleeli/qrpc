@@ -2,6 +2,7 @@ local JSON = require "JSON"
 local snax = require "snax"
 local serialize = require "serialize"
 local pretty = require 'pl.pretty'
+local Chat = require 'rpc.Chat'
 
 local redis_cli
 
@@ -11,7 +12,8 @@ function send_private_chat(args)
 		redis_cli = snax.uniqueservice("redis_cli")
     end
 
-    local ok = redis_cli.req.set("foo1", serialize.SerializeToJSON("Chat" , {type = 0,uuid=123}))
+    chat = Chat{type = 0, uuid = 123}
+    local ok = redis_cli.req.set("foo1", serialize.SerializeToJSON("Chat" ,chat))
 
     return {errcode = 1}
 end

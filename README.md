@@ -19,6 +19,6 @@ make
 cd qrpc
 ./build/bin/redis-server config/redis.conf
 
-./3rd/skynet/skynet config/config
+./3rd/skynet/skynet config/config.lua
 ./build/bin/lua service/client.lua
 ```
