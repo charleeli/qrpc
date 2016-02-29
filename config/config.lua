@@ -51,3 +51,8 @@ lua_cpath = skynetroot .. "luaclib/?.so;" .. "./build/luaclib/?.so"
 
 -- 后台模式
 -- daemon = "./skynet.pid"
+
+--redis configuration
+redis_host = '127.0.0.1'
+redis_port = 6379
+redis_auth = 'foobared'

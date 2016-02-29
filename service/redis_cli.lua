@@ -6,10 +6,10 @@ local db
 
 function init(...)
     db = assert(redis.connect{
-	    host = '127.0.0.1',
-	    port = 6379,
+	    host = skynet.getenv('redis_host') or '127.0.0.1',
+	    port = skynet.getenv('redis_port') or 6379,
 	    db = 0,
-	    auth = 'foobared',
+	    auth = skynet.getenv('redis_auth') or 'foobared',
     },'redis connect error')
 end
 
