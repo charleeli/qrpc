@@ -11,6 +11,8 @@ standalone = "0.0.0.0:2013"
 
 skynetroot = "./3rd/skynet/"
 debug_port = 8000
+orm_main = 'main.orm'
+orm_path = './service/agent/orm'
 sproto_path = './build/sproto'
 rpc_path = './service/agent/rpc'
 log_dirname = "log"
@@ -18,8 +20,8 @@ log_basename = "test"
 
 -- 自定义服务
 myservice = "./service/?.lua;" ..
-        "./service/?/main.lua;"..
-        "./service/agent/?.lua"
+		"./service/?/main.lua;"..
+		"./service/agent/?.lua"
 
 -- LUA服务所在位置
 luaservice = skynetroot .. "service/?.lua;" .. myservice
@@ -39,12 +41,12 @@ cpath = skynetroot .. "cservice/?.so;".."./build/cservice/?.so"
 
 -- 将添加到 package.path 中的路径，供 require 调用
 lua_path = skynetroot .. "lualib/?.lua;" ..
-           "./build/lualib/?.lua;" ..
-		   "./lualib/?.lua;" ..
-		   "./lualib/preload/?.lua;" ..
-		   "./lualib/entity/?.lua;"..
-		   "./service/agent/?.lua;"..
-		   "./service/?.lua"
+		"./build/lualib/?.lua;" ..
+		"./lualib/?.lua;" ..
+		"./lualib/preload/?.lua;" ..
+		"./lualib/entity/?.lua;"..
+		"./service/agent/?.lua;"..
+		"./service/?.lua"
 
 -- 将添加到 package.cpath 中的路径，供 require 调用
 lua_cpath = skynetroot .. "luaclib/?.so;" .. "./build/luaclib/?.so"

@@ -11,7 +11,10 @@ function set_role(args)
 		redis_cli = snax.uniqueservice("redis_cli")
     end
 
-    local ok = redis_cli.req.set("foo1",JSON:encode(serialize.CreateObject('Role')))
+    local obj = serialize.CreateObject('Role')
+    obj.uid = 717066513
+
+    local ok = redis_cli.req.set("foo1",JSON:encode(obj))
 
     return {errcode = 1}
 end

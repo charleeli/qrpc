@@ -16,7 +16,7 @@ CFLAGS = -g -O2 -Wall -I$(BUILD_INCLUDE_DIR)
 LDFLAGS= -L$(BUILD_CLIB_DIR) -Wl,-rpath $(BUILD_CLIB_DIR) -lpthread -lm -ldl -lrt
 DEFS = -DHAS_SOCKLEN_T=1 -DLUA_COMPAT_APIINTCASTS=1 
 
-all : build skynet lua53 Penlight json redis
+all : build skynet lua53 Penlight json lua-orm redis
 
 build:
 	-mkdir $(BUILD_DIR)
@@ -44,6 +44,9 @@ Penlight:
 
 json:
 	cp 3rd/json-lua/JSON.lua $(BUILD_LUALIB_DIR)/
+
+lua-orm:
+	cp 3rd/lua-orm/orm.lua 3rd/lua-orm/typedef.lua $(BUILD_LUALIB_DIR)/
 
 redis:
 	cd 3rd/redis/ && make
