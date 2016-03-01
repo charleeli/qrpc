@@ -12,11 +12,11 @@ function set_role(args)
     end
 
     local obj = serialize.CreateObject('Role')
-    obj.uid = 717066513
+    obj.uid = random(10000, 1000000000)
 
     local ok = redis_cli.req.set("foo1",JSON:encode(obj))
 
-    return {errcode = 1}
+    return {errcode = ok}
 end
 
 function get_role(args)

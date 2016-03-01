@@ -6,6 +6,7 @@ local sproto = require "sproto"
 local sprotoloader = require "sprotoloader"
 local sproto_env = require "sproto_env"
 local pretty = require 'pl.pretty'
+local ctime = require 'ctime'
 
 local c2s_sp = sprotoloader.load(sproto_env.PID_C2S)
 local c2s_host = c2s_sp:host(sproto_env.BASE_PACKAGE)
@@ -41,9 +42,17 @@ local function load_request_handlers()
 end
 
 local function request(name, args, response)
+	local begin = ctime.timestamp()
+
+	if not request_handlers[name] then
+	    LOG_ERROR('request_handler %s not exist or not loaded',name)
+		return
+	end
+
 	local f = assert(request_handlers[name])
 	local r = f(args)
 	if response then
+		LOG_INFO("process %s time used %f ms", name, (ctime.timestamp()-begin)*1000)
 		return response(r)
 	end
 end

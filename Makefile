@@ -63,7 +63,7 @@ skynet : skynet/Makefile
 	cp 3rd/skynet/skynet-src/skynet_env.h $(BUILD_INCLUDE_DIR)
 	cp 3rd/skynet/skynet-src/skynet_socket.h $(BUILD_INCLUDE_DIR)
 	
-LUACLIB = log lfs
+LUACLIB = log lfs ctime
 
 all : \
   $(foreach v, $(LUACLIB), $(BUILD_LUACLIB_DIR)/$(v).so) 
@@ -78,6 +78,9 @@ $(BUILD_LUACLIB_DIR)/log.so : lualib-src/lua-log.c | $(BUILD_LUACLIB_DIR)
 	$(CC) $(CFLAGS) $(SHARED) $^ -o $@
 	
 $(BUILD_LUACLIB_DIR)/lfs.so: 3rd/luafilesystem/src/lfs.c | $(BUILD_LUACLIB_DIR) 
+	$(CC) $(CFLAGS) $(SHARED) $^ -o $@
+
+$(BUILD_LUACLIB_DIR)/ctime.so: lualib-src/lua-ctime.c | $(BUILD_LUACLIB_DIR)
 	$(CC) $(CFLAGS) $(SHARED) $^ -o $@
 
 all : schema

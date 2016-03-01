@@ -4,7 +4,7 @@ set_role 1  {
         msg 1 : string
     }
     response {
-        errcode 0 : integer
+        errcode 0 : boolean
     }
 }
 
