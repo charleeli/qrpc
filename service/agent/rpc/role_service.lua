@@ -2,6 +2,7 @@ local JSON = require "JSON"
 local snax = require "snax"
 local serialize = require "serialize"
 local pretty = require 'pl.pretty'
+local random = require 'random'
 
 local redis_cli
 
@@ -12,7 +13,7 @@ function set_role(args)
     end
 
     local obj = serialize.CreateObject('Role')
-    obj.uid = random(10000, 1000000000)
+    obj.uid = random.random(10, 1000)
 
     local ok = redis_cli.req.set("foo1",JSON:encode(obj))
 
