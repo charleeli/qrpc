@@ -1,3 +1,0 @@
-include base.orm
-include sign.orm
-include role.orm

@@ -1,7 +1,7 @@
 set_role 1  {
     request {
         uid 0 : string
-        msg 1 : string
+        name 1 : string
     }
     response {
         errcode 0 : boolean
@@ -11,7 +11,7 @@ set_role 1  {
 get_role 2  {
     request {
         uid 0 : string
-        msg 1 : string
+        name 1 : string
     }
     response {
         role 0 : Role

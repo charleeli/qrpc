@@ -95,8 +95,8 @@ local function dispatch_package()
 	end
 end
 
-send_request("set_role", {uid=123,msg="hello"})
-send_request("get_role", {uid=123,msg="hello"})
+send_request("set_role", {uid=123,name="alice"})
+send_request("get_role", {uid=123,name="alice"})
 
 while true do
 	dispatch_package()
@@ -104,8 +104,6 @@ while true do
 	if cmd then
 		if cmd == "quit" then
 			send_request("quit")
-		else
-			send_request("get", { what = cmd })
 		end
 	else
 		socket.usleep(100)

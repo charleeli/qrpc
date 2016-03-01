@@ -1,7 +1,6 @@
-local JSON = require "JSON"
 local snax = require "snax"
-local serialize = require "serialize"
-local pretty = require 'pl.pretty'
+local JSON = require "JSON"
+local td = require "td"
 local random = require 'random'
 
 local redis_cli
@@ -12,10 +11,10 @@ function set_role(args)
 		redis_cli = snax.uniqueservice("redis_cli")
     end
 
-    local obj = serialize.CreateObject('Role')
+    local obj = td.CreateObject('Role')
     obj.uid = random.random(10, 1000)
 
-    local ok = redis_cli.req.set("foo1",JSON:encode(obj))
+    local ok = redis_cli.req.set("foo1",td.DumpToJSON('Role', obj))
 
     return {errcode = ok}
 end
@@ -28,7 +27,7 @@ function get_role(args)
 
     local raw_json_text = redis_cli.req.get("foo1")
 
-    local value =  serialize.LoadMongo('Role',JSON:decode(raw_json_text))
+    local value =  td.LoadFromJSON('Role',raw_json_text)
 
     return {role = value}
 end
