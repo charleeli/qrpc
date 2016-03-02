@@ -1,4 +1,5 @@
 local skynet = require "skynet"
+local queue = require "skynet.queue"
 local netpack = require "netpack"
 local lfs = require"lfs"
 local socket = require "socket"
@@ -7,6 +8,8 @@ local sprotoloader = require "sprotoloader"
 local sproto_env = require "sproto_env"
 local pretty = require 'pl.pretty'
 local ctime = require 'ctime'
+
+local cs = queue()
 
 local c2s_sp = sprotoloader.load(sproto_env.PID_C2S)
 local c2s_host = c2s_sp:host(sproto_env.BASE_PACKAGE)
@@ -50,7 +53,7 @@ local function request(name, args, response)
 	end
 
 	local f = assert(request_handlers[name])
-	local r = f(args)
+	local r = cs(f,args)
 	if response then
 		LOG_INFO("process %s time used %f ms", name, (ctime.timestamp()-begin)*1000)
 		return response(r)
@@ -103,6 +106,6 @@ skynet.start(function()
 
 	skynet.dispatch("lua", function(_,_, command, ...)
 		local f = CMD[command]
-		skynet.ret(skynet.pack(f(...)))
+		skynet.retpack(f(...))
 	end)
 end)
