@@ -11,8 +11,8 @@ standalone = "0.0.0.0:2013"
 
 skynetroot = "./3rd/skynet/"
 debug_port = 8000
-orm_main = 'main.td'
-orm_path = './service/agent/td'
+td_main = 'main.td'
+td_path = './service/agent/td'
 sproto_path = './build/sproto'
 rpc_path = './service/agent/rpc'
 log_dirname = "log"
