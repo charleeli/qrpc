@@ -12,8 +12,6 @@ standalone = "0.0.0.0:2013"
 skynetroot = "./3rd/skynet/"
 debug_port = 8000
 td_main = 'main.td'
-td_path = './service/agent/td'
-sproto_path = './build/sproto'
 rpc_path = './service/agent/rpc'
 log_dirname = "log"
 log_basename = "test"
@@ -57,4 +55,4 @@ lua_cpath = skynetroot .. "luaclib/?.so;" .. "./build/luaclib/?.so"
 --redis configuration
 redis_host = '127.0.0.1'
 redis_port = 6379
-redis_auth = 'foobared'
+redis_auth = '123456'

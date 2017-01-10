@@ -1,12 +1,12 @@
 local snax = require "snax"
-local JSON = require "JSON"
+local json = require "cjson"
 local td = require "td"
 local random = require 'random'
 
 local redis_cli
 
 function set_role(args)
-    LOG_INFO("args = %s",JSON:encode(args))
+    LOG_INFO("args = %s",json.encode(args))
     if not redis_cli then
 		redis_cli = snax.uniqueservice("redis_cli")
     end
@@ -20,7 +20,7 @@ function set_role(args)
 end
 
 function get_role(args)
-    LOG_INFO("args = %s",JSON:encode(args))
+    LOG_INFO("args = %s",json.encode(args))
     if not redis_cli then
 		redis_cli = snax.uniqueservice("redis_cli")
     end
