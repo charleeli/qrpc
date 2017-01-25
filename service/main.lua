@@ -7,6 +7,7 @@ skynet.start(function()
 	skynet.call(log, "lua", "start")
 	skynet.uniqueservice("sproto_loader")
 	local console = skynet.newservice("console")
+	skynet.newservice("enetd")
 	skynet.newservice("debug_console",tonumber(skynet.getenv("debug_port")))
 	local watchdog = skynet.newservice("watchdog")
 	skynet.call(watchdog, "lua", "start", {
