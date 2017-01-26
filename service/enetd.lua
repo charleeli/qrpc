@@ -4,7 +4,7 @@ local enet = require "enet"
 local function server()
 	local host = enet.host_create"localhost:5678"
 	while true do
-		local event = host:service(100)
+		local event = host:service(0)
 		if event then
 			if event.type == "receive" then
 				print("Got message: ",  event.data, event.peer)
@@ -15,8 +15,10 @@ local function server()
 			else
 				print("Got event", event.type, event.peer)
 			end
-		end
-	end
+        end
+
+        skynet.sleep(-1)
+    end
 end
 
 skynet.start(function()
