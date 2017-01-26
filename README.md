@@ -24,4 +24,9 @@ cd qrpc
 ./3rd/skynet/skynet config/config.lua
 
 ./build/bin/lua service/client.lua
+
+or
+./build/bin/lua tool/testclt_enet.lua
+enter:
+send_private_chat {uuid=123,msg="hello"}
 ```
